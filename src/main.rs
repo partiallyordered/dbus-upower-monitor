@@ -61,6 +61,7 @@ async fn main() -> std::result::Result<(), Error> {
     // 1. get devices
     //    - use the UPower Enumerate method (or something like this)
     //    - If the value is set to "Battery", you will need to verify that the property power-supply has the value "true" before considering it as a laptop battery. Otherwise it will likely be the battery for a device of an unknown type.
+    //    - also could potentially use the root "/"
     // 2. get device state
     // 3. watch signals on devices of interest (take these as arguments?)
     // 4. update stored device state (or just re-fetch?)
@@ -71,8 +72,8 @@ async fn main() -> std::result::Result<(), Error> {
     // use cap-std?
 
     let properties_proxy = fdo::PropertiesProxy::builder(&connection)
-        .destination("org.freedesktop.UPower")?    // <--- this is important
-        .path("/org/freedesktop/UPower/devices/battery_BAT0")?
+        .destination("org.freedesktop.UPower")?
+        .path("/org/freedesktop/UPower/devices/DisplayDevice")?
         .build()
         .await?;
 
