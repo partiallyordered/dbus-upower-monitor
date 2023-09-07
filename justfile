@@ -1,6 +1,6 @@
 
 build:
-    nix build .
+    nix build -L .
 
 run:
-    nix run .
+    nix run -L .
